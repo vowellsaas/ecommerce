@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Applications</title>
+</head>
+<body>
+    <h1>My Job Applications</h1>
+    <ul>
+        {% for application in applications %}
+        <li>
+            <strong>Job:</strong> <a href="{% url 'job-detail' application.job.pk %}">{{ application.job.title }}</a><br>
+            <strong>Date Applied:</strong> {{ application.date_applied }}<br>
+            <strong>Status:</strong> {{ application.status }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

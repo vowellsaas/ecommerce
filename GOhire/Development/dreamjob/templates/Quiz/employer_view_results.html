@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Results for {{ quiz.title }}</title>
+</head>
+<body>
+    <h1>Quiz Results for {{ quiz.title }}</h1>
+    <ul>
+        {% for result in results %}
+        <li>
+            <strong>Employee:</strong> {{ result.employee.username }} - <strong>Score:</strong> {{ result.score }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

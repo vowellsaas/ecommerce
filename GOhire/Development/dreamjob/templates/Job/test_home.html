@@ -1,0 +1,83 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Test Homepage</h1>
+    <hr>
+
+    <!-- Account URLs -->
+    <h2>Account URLs</h2>
+    <ul>
+        <li><a href="{% url 'register-employee' %}">Register Employee</a></li>
+        <li><a href="{% url 'register-employer' %}">Register Employer</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+
+    <!-- Job URLs -->
+    <h2>Job URLs</h2>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li>
+            <a href="{% url 'create-job' %}">Create Job</a>
+        </li>
+        <li>
+            <form action="{% url 'job-detail' pk=1 %}" method="get">
+                <input type="number" name="pk" placeholder="Job ID" />
+                <button type="submit" class="btn btn-primary">Job Detail</button>
+            </form>
+        </li>
+        <li>
+            <form action="{% url 'apply-for-job' pk=1 %}" method="post">
+                {% csrf_token %}
+                <input type="number" name="pk" placeholder="Job ID" />
+                <button type="submit" class="btn btn-success">Apply for Job</button>
+            </form>
+        </li>
+        <li>
+            <a href="{% url 'employee-applications' %}">Employee Applications</a>
+        </li>
+        <li>
+            <form action="{% url 'employer-job-applications' pk=1 %}" method="get">
+                <input type="number" name="pk" placeholder="Job ID" />
+                <button type="submit" class="btn btn-info">Employer Job Applications</button>
+            </form>
+        </li>
+    </ul>
+
+    <!-- Manage Account URLs -->
+    <h2>Manage Account URLs</h2>
+    <ul>
+        <li><a href="{% url 'update-employer-profile' %}">Update Employer Profile</a></li>
+        <li><a href="{% url 'update-employee-profile' %}">Update Employee Profile</a></li>
+    </ul>
+
+    <!-- Quiz URLs -->
+    <h2>Quiz URLs</h2>
+    <ul>
+        <form action="{% url 'take-quiz' job_id=1 %}" method="get">
+            <input type="number" name="job_id" placeholder="Job ID" />
+            <button type="submit" class="btn btn-warning">Take Quiz</button>
+        </form>
+        <form action="{% url 'quiz-result' job_id=1 quiz_id=1 %}" method="get">
+            <input type="number" name="quiz_id" placeholder="Quiz ID" />
+            <button type="submit" class="btn btn-warning">Quiz Result</button>
+        </form>
+        <form action="{% url 'employer-view-results' job_id=1 %}" method="get">
+            <input type="number" name="job_id" placeholder="Job ID" />
+            <button type="submit" class="btn btn-warning">View Results</button>
+        </form>
+    </ul>
+
+    <!-- Resume Analyzer URLs -->
+    <h2>Resume Analyzer URLs</h2>
+    <ul>
+        <li><a href="{% url 'upload-resume' %}">Upload Resume</a></li>
+        <form action="{% url 'resume-insights' pk=1 %}" method="get">
+            <input type="number" name="pk" placeholder="Resume ID" />
+            <button type="submit" class="btn btn-info">Resume Insights</button>
+        </form>
+        <li><a href="{% url 'create-resume' %}">Create Resume</a></li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Your Profile</h1>
+    <hr>
+    {% if user.is_employee %}
+    <h2>Employee Information</h2>
+    <p><strong>Name:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Skills:</strong> {{ user.profile.skills }}</p>
+    <p><strong>Experience:</strong> {{ user.profile.experience }}</p>
+    <a href="{% url 'edit-profile' %}" class="btn btn-primary">Edit Profile</a>
+    {% elif user.is_employer %}
+    <h2>Employer Information</h2>
+    <p><strong>Company Name:</strong> {{ user.profile.company_name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>PAN:</strong> {{ user.profile.pan }}</p>
+    <p><strong>GSTIN:</strong> {{ user.profile.gsttin }}</p>
+    <a href="{% url 'edit-profile' %}" class="btn btn-primary">Edit Profile</a>
+    {% endif %}
+</div>
+{% endblock %}

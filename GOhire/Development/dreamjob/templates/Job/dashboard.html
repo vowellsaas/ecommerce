@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Admin Dashboard</h1>
+    <hr>
+    <h2>Your Job Postings</h2>
+    <ul>
+        {% for job in jobs %}
+        <li>{{ job.title }} - <a href="{% url 'job-detail' job.id %}">View</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create-job' %}" class="btn btn-primary">Create New Job</a>
+</div>
+{% endblock %}
